@@ -1,9 +1,12 @@
 package com.dev.springmongodb.domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -14,6 +17,8 @@ public class User implements Serializable { //Serializable permite converter os 
     private String id;
     private String name;
     private String email;
+    @DBRef(lazy = true) //referenciar colecao  - lazy só retorna os posts se acessar explicitamente (para nao sobrecarregar quando puxar USER)
+    private List<Post> posts = new ArrayList<>();  //como lista é uma associacao, instanciamos aqui mesmo
 
     public User() {
     }
@@ -22,6 +27,14 @@ public class User implements Serializable { //Serializable permite converter os 
         this.id = id;
         this.name = name;
         this.email = email;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 
     public String getId() {

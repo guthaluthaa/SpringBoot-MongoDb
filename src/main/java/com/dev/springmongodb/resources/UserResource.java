@@ -1,5 +1,6 @@
 package com.dev.springmongodb.resources;
 
+import com.dev.springmongodb.domain.Post;
 import com.dev.springmongodb.domain.User;
 import com.dev.springmongodb.dto.UserDTO;
 import com.dev.springmongodb.services.UserService;
@@ -56,4 +57,11 @@ public class UserResource {
         obj = service.update(obj);
         return ResponseEntity.noContent().build();
     }
+
+    @RequestMapping(value = "/{id}/posts",method = RequestMethod.GET)  //OU @GetMapping
+    public ResponseEntity<List<Post>> findPost(@PathVariable String id){ //PathVariable pega do {id}
+        User obj = service.findById(id);
+        return ResponseEntity.ok().body(obj.getPosts());
+    }
+
 }

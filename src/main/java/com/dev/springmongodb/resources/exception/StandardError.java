@@ -1,4 +1,4 @@
-package com.dev.springmongodb.services.exception;
+package com.dev.springmongodb.resources.exception;
 
 import java.io.Serializable;
 

@@ -26,7 +26,7 @@ public class PostService {
     }
 
     public List<Post> findByTitle(String text){ //metodo no servico para puxar do Repository
-        return repo.findByTitleContaining(text);
+        return repo.searchTitle(text);
     }
 
 }
